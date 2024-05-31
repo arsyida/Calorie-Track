@@ -1,6 +1,6 @@
 # Calorie Track
 
-##Teknologi yang digunakan
+## Teknologi yang digunakan
 ### Frontend
 - HTML
 - CSS
