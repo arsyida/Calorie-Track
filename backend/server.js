@@ -1,3 +1,9 @@
+const cors = require('cors')
+const bodyParser = require('body-parser')
+const express = require('express');
+const {client, connectDB } = require('./database');
+
+const PORT = 5000
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://ajengindar:tugasRPL@cluster0.hyvyk1j.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
@@ -26,4 +32,22 @@ async function runDB() {
 runDB().catch(console.dir);
 
 
-// Belaa lanjut disini
+const app = express();
+connectDB()
+app.use(cors())
+app.use(bodyParser.json())
+
+// router
+app.get("/Activity", async(req, res)=>{
+    const data = await client.db('Calories').collection('Activity').find().sort({name:1}).toArray()
+    res.json(data)
+})
+
+app.get("/Food", async(req, res)=>{
+    const data = await client.db('Calories').collection('Food And Drink').find().sort({name:1}).toArray()
+    res.json(data)
+})
+
+app.listen(PORT,()=>{
+    console.log(`App run in port ${PORT}`);
+})
