@@ -3,10 +3,10 @@ const bodyParser = require('body-parser')
 const express = require('express');
 const {client, connectDB } = require('./database');
 
-const PORT = 5000
+const PORT = process.env.PORT;
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://ajengindar:tugasRPL@cluster0.hyvyk1j.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri = process.env.URL_DB;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
