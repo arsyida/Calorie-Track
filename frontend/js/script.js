@@ -1,9 +1,3 @@
-
-
-
-
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const btnAddInputMakanan = document.getElementById("btn-add-input-makanan");
     const containerInputMakanan = document.getElementById("container-input-makanan");
@@ -100,6 +94,12 @@ document.addEventListener("DOMContentLoaded", () => {
             container.remove();
         });
     }
+  // Reset button
+document.addEventListener('click', event => {
+  if (event.target.classList.contains('btn-reset')) {
+    location.reload()
+  }
+});
 });
   const btnAddInputMakanan = document.getElementById("btn-add-input-makanan");
   const containerInputMakanan = document.getElementById("container-input-makanan");
