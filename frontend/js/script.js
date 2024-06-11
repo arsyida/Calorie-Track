@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-<<<<<<< HEAD
     const btnAddInputMakanan = document.getElementById("btn-add-input-makanan");
     const containerInputMakanan = document.getElementById("container-input-makanan");
     const btnAddInputAktifitas = document.getElementById("btn-add-input-aktifitas");
@@ -96,7 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-=======
   const btnAddInputMakanan = document.getElementById("btn-add-input-makanan");
   const containerInputMakanan = document.getElementById("container-input-makanan");
   const btnAddInputAktifitas = document.getElementById("btn-add-input-aktifitas");
@@ -187,4 +185,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
->>>>>>> cb05522b121a8b6aff507541fe41a045fb0dfaea
