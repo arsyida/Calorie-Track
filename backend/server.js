@@ -1,14 +1,15 @@
 const cors = require('cors')
+require('dotenv').config();
 const bodyParser = require('body-parser')
 const express = require('express');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 const PORT = process.env.PORT;
-
-const uri = process.env.URL_DB;
 const app = express();
 app.use(cors())
 app.use(bodyParser.json())
+
+const uri = process.env.URL_DB;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -26,21 +27,21 @@ async function runDB() {
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } catch {
+  } catch (error){
     // Ensures that the client will close when you finish/error
     console.error('Error:', error);
   }
 }
-runDB().catch(console.dir);
+runDB();
 
 // router
 app.get("/Activity", async(req, res)=>{
-    const data = await client.db('Calories').collection('Activity').find().sort({name:1}).toArray()
+    const data = await client.db('calories').collection('Activity').find().sort({name:1}).toArray()
     res.json(data)
 })
 
 app.get("/Food", async(req, res)=>{
-    const data = await client.db('Calories').collection('Food And Drink').find().sort({name:1}).toArray()
+    const data = await client.db('caalories').collection('Food And Drink').find().sort({name:1}).toArray()
     res.json(data)
 })
 
