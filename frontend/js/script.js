@@ -1,3 +1,9 @@
+
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const btnAddInputMakanan = document.getElementById("btn-add-input-makanan");
     const containerInputMakanan = document.getElementById("container-input-makanan");
@@ -184,4 +190,3 @@ document.addEventListener("DOMContentLoaded", () => {
       container.remove();
     });
   }
-});
