@@ -1,0 +1,179 @@
+/* Reset some default styles */
+body, h1, h4, div, form, select, input, button {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Basic body styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: #333;
+  text-align: center;
+}
+
+/* Main container styling */
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Title styling */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2.5em;
+  color: #333;
+}
+
+/* Form input section styling */
+form {
+  margin-bottom: 20px;
+}
+
+/* Individual input container styling */
+.container-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  justify-content: center; /* Center the content */
+}
+
+.inner-input-makanan,
+.inner-input-aktifitas,
+.porsi {
+  type="number" 
+  name="porsi" 
+  class="porsi" 
+  min="0" 
+  placeholder="Porsi"
+  required; /* Center the content */
+}
+<input 
+type="number" 
+name="menit" 
+class="menit" 
+min="0" 
+placeholder="Menit"
+required
+/>
+</div>
+</div>
+.inner-input-makanan div,
+.inner-input-aktifitas div,
+.porsi div {
+
+
+  flex: 1;
+  max-width: 400px; /* Adjusted width */
+}
+
+input[type="number"],
+select {
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: calc(50% - 16px); /* Adjusted width */
+}
+
+/* Button to add input styling */
+.btn-add-input-makanan,
+.btn-add-input-aktifitas {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.btn-add-input-makanan img,
+.btn-add-input-aktifitas img {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+
+/* Button remove styling */
+.btn-remove {
+  flex: 0 0 auto;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  background: url('./assets/Remove.png') no-repeat center center;
+  background-size: cover;
+  margin-right: 10px;
+}
+
+/* Button container styling */
+.contrainer-btn-hitung {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.btn-reset {
+  background: #fff;
+  color: #197254;
+  border: 2px solid #197254;
+}
+
+.btn-reset:hover {
+  background: #197254;
+  color: #fff;
+}
+
+.btn-submit {
+  background: #197254;
+  color: #fff;
+}
+
+.btn-submit:hover {
+  background: #197254;
+}
+
+/* Result container styling */
+.contrainer-result {
+  margin-top: 20px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.contrainer-result div {
+  margin-bottom: 10px;
+}
+
+.contrainer-result h4 {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.contrainer-result h4::after {
+  content: "";
+  display: block;
+  margin-top: 3px;
+  border-bottom: 2px solid rgb(0, 0, 0);
+}
+
+.contrainer-result div span:first-child {
+  display: inline-block;
+  width: 150px;
+  font-weight: normal;
+}
+
+.contrainer-result div span:last-child {
+  display: inline-block;
+}
