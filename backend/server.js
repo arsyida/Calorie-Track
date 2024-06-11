@@ -1,12 +1,14 @@
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const express = require('express');
-const {client, connectDB } = require('./database');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
 const PORT = process.env.PORT;
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = process.env.URL_DB;
+const app = express();
+app.use(cors())
+app.use(bodyParser.json())
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -30,12 +32,6 @@ async function runDB() {
   }
 }
 runDB().catch(console.dir);
-
-
-const app = express();
-connectDB()
-app.use(cors())
-app.use(bodyParser.json())
 
 // router
 app.get("/Activity", async(req, res)=>{
