@@ -1,55 +1,24 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const btnAddInputMakanan = document.getElementById("btn-add-input-makanan");
-    const containerInputMakanan = document.getElementById("container-input-makanan");
-    const btnAddInputAktifitas = document.getElementById("btn-add-input-aktifitas");
-    const containerInputAktifitas = document.getElementById("container-input-aktifitas");
+const foodSelect = document.getElementById('foodSelect');
+    const activitySelect = document.getElementById('activitySelect');
 
-    btnAddInputMakanan.addEventListener("click", () => {
-        const newInput = document.createElement("div");
-        newInput.classList.add("contrainer-input", "inner-input-makanan");
-        
-        newInput.innerHTML = `
-            <div class="btn-remove">
-            <img src="./assets/Remove.png" alt="Remove" class="remove-icon">
-            </div>
-            <select name="input-makanan" class="input-makanan" required>
-            <option value="" disabled selected hidden>Please Choose...</option>
-            <option value="push-up">push up</option>
-            </select>
-            <input type="number" name="porsi" class="porsi" min="0" placeholder="porsi" required>
-        `;
-        containerInputMakanan.appendChild(newInput);
-        addRemoveButtonListener(newInput);
-    });
-
-    btnAddInputAktifitas.addEventListener("click", () => {
-        const newInput = document.createElement("div");
-        newInput.classList.add("contrainer-input", "inner-input-aktifitas");
-        
-        newInput.innerHTML = `
-            <div class="btn-remove">
-            <img src="./assets/Remove.png" alt="Remove" class="remove-icon">
-            </div>
-            <select name="input-aktifitas" class="input-aktivitas" required>
-            <option value="" disabled selected hidden>Please Choose...</option>
-            <option value="push-up">push up</option>
-            </select>
-            <input type="number" name="menit" class="menit" min="0" placeholder="menit" required>
-        `;
-        containerInputAktifitas.appendChild(newInput);
-        addRemoveButtonListener(newInput);
-    });
-    });
-
-    function addRemoveButtonListener(container) {
-        const removeButton = container.querySelector(".btn-remove");
-        removeButton.addEventListener("click", () => {
-            container.remove();
-        });
+    // Function to fetch data from API and render it to the select element
+    function fetchAndRenderOptions(apiUrl, selectElement) {
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                // Assuming the API returns an array of objects with 'id' and 'name' properties
+                data.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.id;
+                    option.textContent = item.name;
+                    selectElement.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
     }
-  // Reset button
-document.addEventListener('click', event => {
-  if (event.target.classList.contains('btn-reset')) {
-    location.reload()
-  }
-});
+
+    // Fetch and render options for food and activity
+    fetchAndRenderOptions('/food', foodSelect);
+    fetchAndRenderOptions('/activity', activitySelect);
