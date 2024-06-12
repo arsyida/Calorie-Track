@@ -23,8 +23,8 @@
 - fitur tambah bar input = akbar
 - fitur hapus bar input = akbar
 - fitur hitung = Danar
-- fitur reset = irvan
-- output = Ajeng
+- fitur reset = Irvan
+- output = Irvan
 
 ### backend(MongoDb atlas, Express) 
 - membuat dan koneksikan database = ajeng
