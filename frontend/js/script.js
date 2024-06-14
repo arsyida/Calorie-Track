@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const inputMakan = document.getElementById('container-input-makanan');
   const inputAktifitas = document.getElementById('container-input-aktifitas');
 
-  const dataActivity = await fetchData('http://localhost:5000/Activity');
-  const dataFood = await fetchData('http://localhost:5000/Food');
+  const dataActivity = await fetchData('https://api-calorietrack.vercel.app/Activity');
+  const dataFood = await fetchData('https://api-calorietrack.vercel.app/Food');
 
   inputMakan.getElementsByClassName('input-makanan')[0].innerHTML = `<option value="" disabled selected hidden>Please Choose...</option>${generateOptions("makanan", dataFood)}`
   inputAktifitas.getElementsByClassName('input-aktifitas')[0].innerHTML = `<option value="" disabled selected hidden>Please Choose...</option>${generateOptions("aktifitas", dataActivity)}`
