@@ -31,7 +31,6 @@
 }
 
 /* container input */
-
 form .container-input{
   display: flex;
   gap: 6px;
@@ -74,6 +73,7 @@ form .btn-remove{
 form div img {
   width: 32px;
 }
+
 form .btn-remove img{
   width: 28px;
 }
@@ -94,13 +94,41 @@ form button {
   height: 32px;
   padding: 4px;
 }
+
 .btn-reset{
   background-color: var(--white-color);
   border: 1px solid var(--primary-color);
   color: var(--primary-color);
 }
+
 .btn-submit{
   background-color: var(--primary-color);
   border: 1px solid var(--primary-color);
   color: var(--white-color);
+}
+
+.container-result{
+  width: 320px;
+  margin: 64px 0;
+}
+.container-result div h4{
+  margin: 12px 0;
+  border-bottom: 1px solid var(--black-color);
+}
+.container-result div div{
+  display:flex;
+  justify-content: space-between;
+}
+
+/* hide arrow input number */
+/* chrome */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
