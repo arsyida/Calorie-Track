@@ -138,6 +138,27 @@ function generateOptions(inputType, data) {
     }
   });
 
+// Output
+const KaloriDikonsumsi = document.getElementById('output-calori-consumed');
+const Karbohidrat = document.getElementById('output-carbohydrate');
+const Lemak = document.getElementById('output-fat');
+const Protein = document.getElementById('output-protein');
+const Serat = document.getElementById('output-fiber');
+const Kolestrol = document.getElementById('output-cholesterols');
+
+const KaloriDibakar = document.getElementById('output-calories-burned');
+const KaloriTotal = document.getElementById('output-total-calories');
+
+KaloriDikonsumsi.textContent = 0; //fungsinya panggil disini calculatenya
+Karbohidrat.textContent = 0; //fungsinya panggil disini calculatenya
+Lemak.textContent = 0; //fungsinya panggil disini calculatenya
+Protein.textContent = 0; //fungsinya panggil disini calculatenya
+Serat.textContent = 0; //fungsinya panggil disini calculatenya
+Kolestrol.textContent = 0; //fungsinya panggil disini calculatenya
+
+KaloriDibakar.textContent = 0; //fungsinya panggil disini calculatenya
+KaloriTotal.textContent = 0; //fungsinya panggil disini calculatenya
+
 // Reset button
 document.addEventListener('click', event => {
 if (event.target.classList.contains('btn-reset')) {
