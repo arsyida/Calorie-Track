@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  const btnAddInputMakanan = document.getElementById("btn-add-input-makanan");
-  const btnAddInputAktifitas = document.getElementById("btn-add-input-aktifitas");
+document.addEventListener('DOMContentLoaded', async () => {
+  const btnAddInputMakanan = document.getElementById('btn-add-input-makanan');
+  const btnAddInputAktifitas = document.getElementById('btn-add-input-aktifitas');
   const inputMakan = document.getElementById('container-input-makanan');
   const inputAktifitas = document.getElementById('container-input-aktifitas');
 
@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   inputMakan.getElementsByClassName('input-makanan')[0].innerHTML = `<option value="" disabled selected hidden>Please Choose...</option>${generateOptions("makanan", dataFood)}`
   inputAktifitas.getElementsByClassName('input-aktifitas')[0].innerHTML = `<option value="" disabled selected hidden>Please Choose...</option>${generateOptions("aktifitas", dataActivity)}`
+
+  btnAddInputMakanan.addEventListener('click', () => addInput(inputMakan, 'makanan', dataFood));
+  btnAddInputAktifitas.addEventListener('click', () => addInput(inputAktifitas, 'aktifitas', dataActivity));
 
   const formInput = document.getElementById('form-input');
   formInput.addEventListener('submit', (event) => {
@@ -20,41 +23,25 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     processInputs(inputFoods, 'makanan', 'porsi', data);
     processInputs(inputActivities, 'aktifitas', 'menit', data);
-    });
 
+    const kaloriDikonsumsi = document.getElementById('output-calori-consumed');
+    const karbohidrat = document.getElementById('output-carbohydrate');
+    const lemak = document.getElementById('output-fat');
+    const protein = document.getElementById('output-protein');
+    const serat = document.getElementById('output-fiber');
+    const kolestrol = document.getElementById('output-cholesterols');
+    const kaloriDibakar = document.getElementById('output-calories-burned');
+    const kaloriTotal = document.getElementById('output-total-calories');
 
-  btnAddInputMakanan.addEventListener("click", () => {
-    const newInput = document.createElement("div");
-    newInput.classList.add("contrainer-input", "inner-input-makanan");
+    kaloriDikonsumsi.textContent = calculateFood(data, dataFood, 'caloriesConsumed');
+    karbohidrat.textContent = calculateFood(data, dataFood, 'carbo');
+    lemak.textContent = calculateFood(data, dataFood, 'fat');
+    protein.textContent = calculateFood(data, dataFood, 'protein');
+    serat.textContent = calculateFood(data, dataFood, 'fiber');
+    kolestrol.textContent = calculateFood(data, dataFood, 'cholesterol');
+    kaloriDibakar.textContent = calculateActivity(data, dataActivity, 'burned');
+    kaloriTotal.textContent = calculateFood(data, dataFood, 'caloriesConsumed') - calculateActivity(data, dataActivity);
 
-      newInput.innerHTML = `
-          <div class="btn-remove">
-          <img src="./assets/Remove.png" alt="Remove" class="remove-icon">
-          </div>
-           <select name="input-makanan" class="input-makanan" required>
-            <option value="" disabled selected hidden>Please Choose...</option>
-            ${generateOptions("makanan", data)}
-            </select>
-            <input type="number" name="porsi" class="porsi" min="0" placeholder="porsi" required>
-        `;
-        containerElement.appendChild(newInput);
-  });
-
-  btnAddInputAktifitas.addEventListener("click", () => {
-      const newInput = document.createElement("div");
-      newInput.classList.add("contrainer-input", "inner-input-aktifitas");
-
-      newInput.innerHTML = `
-          <div class="btn-remove">
-          <img src="./assets/Remove.png" alt="Remove" class="remove-icon">
-          </div>
-          <select name="input-aktifitas" class="input-aktivitas" required>
-          <option value="" disabled selected hidden>Please Choose...</option>
-          ${generateOptions("aktivitas", data)}
-          </select>
-          <input type="number" name="menit" class="menit" min="0" placeholder="menit" required>
-      `;
-      containerElement.appendChild(newInput);
   });
 });
 
@@ -73,34 +60,72 @@ function processInputs(inputs, type, satuan, data) {
   });
 }
 
+function calculateFood(data, dataFood, type) {
+  let total = 0;
+  data.forEach(item => {
+    if (item.type === 'makanan') {
+      const matchedFood = findMatchedItem(item.name, dataFood);
+      if (matchedFood) {
+        if (type === 'caloriesConsumed') {
+          const caloriesConsumed = parseFloat(item.portion) * matchedFood.calories;
+          total += caloriesConsumed;
+        } else if (type === 'carbo') {
+          const carbo = parseFloat(item.portion) * matchedFood.carbohydrates;
+          total += carbo;
+        } else if (type === 'fat') {
+          const fat = parseFloat(item.portion) * matchedFood.fat;
+          total += fat;
+        } else if (type === 'protein') {
+          const protein = parseFloat(item.portion) * matchedFood.protein;
+          total += protein;
+        } else if (type === 'fiber') {
+          const fiber = parseFloat(item.portion) * matchedFood.fiber;
+          total += fiber;
+        } else if (type === 'cholesterol') {
+          const cholesterol = parseFloat(item.portion) * matchedFood.cholesterol;
+          total += cholesterol;
+        }
+      }
+    }
+  });
+  return total;
+}
+
+function calculateActivity(data, dataActivity) {
+  let total = 0;
+  data.forEach(item=>{
+    const matchedActivity = findMatchedItem(item.name, dataActivity);
+    if (matchedActivity) {
+      const burned = parseFloat(item.minute) * matchedActivity.calories_burned_per_minute;
+      total += burned;
+    }
+  })
+  return total
+}
+
 function findMatchedItem(name, items) {
   return items.find(item => item.name === name);
 }
 
-function resetFields() {
-    document.getElementById('foodQuantity1').value = 3;
-    document.getElementById('foodQuantity2').value = 3;
-    document.getElementById('activityDuration1').value = 30;
-    document.getElementById('activityDuration2').value = 40;
-    document.getElementById('totalCaloriesConsumed').innerText = 0;
-    document.getElementById('totalCaloriesBurned').innerText = 0;
-    document.getElementById('netCalories').innerText = 0;
-}
+function addInput(containerElement, inputType, data) {
+  const newInputDiv = document.createElement('div');
+  newInputDiv.classList.add('container-input');
+  newInputDiv.classList.add(`inner-input-${inputType}`);
 
-function calculateCalories() {
-    let foodCalories1 = parseInt(document.getElementById('foodSelect1').value) * parseInt(document.getElementById('foodQuantity1').value);
-    let foodCalories2 = parseInt(document.getElementById('foodSelect2').value) * parseInt(document.getElementById('foodQuantity2').value);
-    let totalCaloriesConsumed = foodCalories1 + foodCalories2;
+  const satuan = (inputType === 'makanan') ? 'porsi' : 'menit';
 
-    let activityCalories1 = parseFloat(document.getElementById('activitySelect1').value) * parseInt(document.getElementById('activityDuration1').value);
-    let activityCalories2 = parseFloat(document.getElementById('activitySelect2').value) * parseInt(document.getElementById('activityDuration2').value);
-    let totalCaloriesBurned = activityCalories1 + activityCalories2;
+  newInputDiv.innerHTML = `
+    <div class="btn-remove">
+      <img src="./images/Remove.png" alt="Remove" class="remove-icon">
+    </div>
+    <select name="input-${inputType}" class="input-${inputType}" required>
+      <option value="" disabled selected hidden>Please Choose...</option>
+      ${generateOptions(inputType, data)}
+    </select>
+    <input type="number" name="${satuan}" class="${satuan}" min="0" placeholder="${satuan}" required>
+  `;
 
-    let netCalories = totalCaloriesConsumed - totalCaloriesBurned;
-
-    document.getElementById('totalCaloriesConsumed').innerText = totalCaloriesConsumed;
-    document.getElementById('totalCaloriesBurned').innerText = totalCaloriesBurned;
-    document.getElementById('netCalories').innerText = netCalories;
+  containerElement.appendChild(newInputDiv);
 }
 
 function generateOptions(inputType, data) {
@@ -113,34 +138,28 @@ function generateOptions(inputType, data) {
   }).join('');
 }
 
- // Function to fetch data from API and render it to the select element
- async function fetchData(apiUrl, selectElement) {
-  await fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-          // Assuming the API returns an array of objects with 'id' and 'name' properties
-          data.forEach(item => {
-              const option = document.createElement('option');
-              option.value = item.id;
-              option.textContent = item.name;
-              selectElement.appendChild(option);
-          });
-      })
-      .catch(error => {
-          console.error('Error fetching data:', error);
-      });
-}
-
-  document.addEventListener('click', event => {
-    if (event.target.classList.contains('remove-icon')) {
-      const containerElement = event.target.closest('.container-input');
-      containerElement.remove();
+async function fetchData(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
-  });
-
-// Reset button
-document.addEventListener('click', event => {
-if (event.target.classList.contains('btn-reset')) {
-  location.reload()
+    return response.json();
+  } catch (error) {
+    console.error('Fetch error:', error);
+    return [];
+  }
 }
+
+document.addEventListener('click', event => {
+  if (event.target.classList.contains('remove-icon')) {
+    const containerElement = event.target.closest('.container-input');
+    containerElement.remove();
+  }
+});
+
+document.addEventListener('click', event => {
+  if (event.target.classList.contains('btn-reset')) {
+    location.reload()
+  }
 });
