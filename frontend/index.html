@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calorie-Track</title>
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/style.css"/>
     <script src="./js/script.js"></script>
   </head>
   <body>
@@ -14,30 +14,30 @@
       <h1>Calorie-Track</h1>
 
       <!-- form input -->
-      <form action="">
+      <form id="form-input">
         <!-- container input makanan/minuman-->
         <div id="container-input-makanan">
           <!-- input -->
-          <div class="contrainer-input inner-input-makanan">
+          <div class="container-input inner-input-makanan">
             <!-- input select -->
             <div class="btn-remove"></div>
             <div>
               <label for="input-makanan">Makanan/Minuman</label><br />
-              <select name="input-makanan" class="input-makanan">
+              <select name="input-makanan" class="input-makanan" required>
                 <option value="" disabled selected hidden>
                   Please Choose...
-              </option>
-            </select>
-          </div>
+                </option>
+              </select>
+            </div>
 
             <!-- input porsi -->
-            <input 
-            type="number" 
-            name="porsi" 
-            class="porsi" 
-            min="0" 
-            placeholder="Porsi"
-            required
+            <input
+              type="number"
+              name="porsi"
+              class="porsi"
+              min="0"
+              placeholder="porsi"
+              required
             />
           </div>
         </div>
@@ -46,59 +46,59 @@
         
         <!-- button to add input makanan-->
         <div class="btn-add-input-makanan">
-          <img 
-          id="btn-add-input-makanan"
-          src="./assets/Add.png" 
-          alt="" 
-          srcset="" 
+          <img
+            id="btn-add-input-makanan"
+            src="./images/Add.png"
+            alt=""
+            srcset=""
           />
         </div>
 
         <!-- container input aktifitas -->
         <div id="container-input-aktifitas">
           <!-- input -->
-          <div class="contrainer-input inner-input-aktifitas">
+          <div class="container-input inner-input-aktifitas">
             <!-- input aktifitas -->
             <div class="btn-remove"></div>
             <div>
-            <label for="input-aktifitas">Aktifitas</label><br />
-            <select name="input-aktifitas" class="input-aktifitas" required>
-              <option value="" disabled selected hidden>
-                Please Choose...
-              </option>
-            </select>
+              <label for="input-aktifitas">Aktifitas</label><br />
+              <select name="input-aktifitas" class="input-aktifitas" required>
+                <option value="" disabled selected hidden>
+                  Please Choose...
+                </option>
+              </select>
             </div>
 
             <!-- input menit -->
-            <input 
-            type="number" 
-            name="menit" 
-            class="menit" 
-            min="0" 
-            placeholder="Menit"
-            required
+            <input
+              type="number"
+              name="menit"
+              class="menit"
+              min="0"
+              placeholder="menit"
+              required
             />
           </div>
         </div>
 
         <!-- button to add input aktifitas -->
         <div class="btn-add-input-aktifitas">
-          <img 
-          id="btn-add-input-aktifitas"
-          src="./assets/Add.png" 
-          alt="" 
-          srcset="" 
+          <img
+            id="btn-add-input-aktifitas"
+            src="./images/Add.png"
+            alt=""
+            srcset=""
           />
         </div>
 
         <!-- button hitung -->
-        <div class="contrainer-btn-hitung">
+        <div class="container-btn-hitung">
           <button class="btn-reset" type="reset">Reset</button>
           <button class="btn-submit" type="submit">Hitung</button>
         </div>
       </form>
 
-      <div class="contrainer-result">
+      <div class="container-result">
         <div>
           <h4>Dikonsumsi:</h4>
           <div><span>Kalori</span><span id="output-calori-consumed"></span></div>
@@ -106,15 +106,15 @@
           <div><span>Lemak</span><span id="output-fat"></span></div>
           <div><span>Protein</span><span id="output-protein"></span></div>
           <div><span>Serat</span><span id="output-fiber"></span></div>
-          <div><span>Kolestrol</span><span id="output-cholesterols"></span></div>
+          <div><span>Kolesterol</span><span id="output-cholesterols"></span></div>
         </div>
         <div>
           <h4>Dibakar:</h4>
           <div><span>Kalori</span><span id="output-calories-burned"></span></div>
         </div>
         <div>
-          <h4>Total</h4>
-          <div><span>Kalori</span><span id="output-total-calories"></span></div>
+          <h4>Total:</h4>
+          <div><span>Kalori</span><span  id="output-total-calories"></span></div>
         </div>
       </div>
     </div>
