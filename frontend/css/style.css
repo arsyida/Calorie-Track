@@ -1,179 +1,106 @@
-/* Reset some default styles */
-body, h1, h4, div, form, select, input, button {
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* variable */
+:root {
+  --primary-color: #186f65;
+  --white-color: #f8f8f8;
+  --black-color: #1f1717;
+}
+
+/* Global */
+* {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  color: var(--black-color);
 }
 
-/* Basic body styles */
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  background-color: #f4f4f4;
-  color: #333;
-  text-align: center;
-}
-
-/* Main container styling */
+/* container */
 .container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-}
-
-/* Title styling */
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 2.5em;
-  color: #333;
-}
-
-/* Form input section styling */
-form {
-  margin-bottom: 20px;
-}
-
-/* Individual input container styling */
-.container-input {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 10px;
-  justify-content: center; /* Center the content */
+  background-color: var(--white-color);
 }
 
-.inner-input-makanan,
-.inner-input-aktifitas,
-.porsi {
-  type="number" 
-  name="porsi" 
-  class="porsi" 
-  min="0" 
-  placeholder="Porsi"
-  required; /* Center the content */
-}
-<input 
-type="number" 
-name="menit" 
-class="menit" 
-min="0" 
-placeholder="Menit"
-required
-/>
-</div>
-</div>
-.inner-input-makanan div,
-.inner-input-aktifitas div,
-.porsi div {
-
-
-  flex: 1;
-  max-width: 400px; /* Adjusted width */
-}
-
-input[type="number"],
-select {
-  padding: 8px;
-  margin: 5px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: calc(50% - 16px); /* Adjusted width */
-}
-
-/* Button to add input styling */
-.btn-add-input-makanan,
-.btn-add-input-aktifitas {
+/* title */
+.container h1 {
+  padding: 24px;
   text-align: center;
-  margin: 20px 0;
 }
 
-.btn-add-input-makanan img,
-.btn-add-input-aktifitas img {
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-}
+/* container input */
 
-/* Button remove styling */
-.btn-remove {
-  flex: 0 0 auto;
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-  background: url('./assets/Remove.png') no-repeat center center;
-  background-size: cover;
-  margin-right: 10px;
-}
-
-/* Button container styling */
-.contrainer-btn-hitung {
+form .container-input{
   display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
+  gap: 6px;
+  margin-top: 12px;
 }
 
-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1em;
+/* input makanan dan aktifitas */
+form div select {
+  width: 280px;
+  height: 32px;
+  padding: 4px;
+  border: 1px solid var(--black-color);
+  background-color: white;
 }
 
-.btn-reset {
-  background: #fff;
-  color: #197254;
-  border: 2px solid #197254;
+/* input porsi dan menit */
+form div input {
+  width: 40px;
+  height: 22px;
+  padding: 4px;
+  align-self: flex-end;
+  border: 1px solid var(--black-color);
+  background-color: white;
 }
 
-.btn-reset:hover {
-  background: #197254;
-  color: #fff;
+/* button add*/
+form .btn-add-input-makanan, form .btn-add-input-aktifitas {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
 }
 
-.btn-submit {
-  background: #197254;
-  color: #fff;
+form .btn-remove{
+  width: 28px;
+  height: 28px;
+  align-self: center;
 }
 
-.btn-submit:hover {
-  background: #197254;
+/* button add img*/
+form div img {
+  width: 32px;
+}
+form .btn-remove img{
+  width: 28px;
 }
 
-/* Result container styling */
-.contrainer-result {
-  margin-top: 20px;
-  padding: 20px;
-  background: #f9f9f9;
-  border-radius: 8px;
-  text-align: left;
+/* container button hitung */
+form .container-btn-hitung {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  margin-top: 36px;
 }
 
-.contrainer-result div {
-  margin-bottom: 10px;
+/* button hitung */
+form button {
+  font-weight: 500;
+  justify-self: end;
+  width: 96px;
+  height: 32px;
+  padding: 4px;
 }
-
-.contrainer-result h4 {
-  margin-bottom: 5px;
-  font-weight: bold;
+.btn-reset{
+  background-color: var(--white-color);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
 }
-
-.contrainer-result h4::after {
-  content: "";
-  display: block;
-  margin-top: 3px;
-  border-bottom: 2px solid rgb(0, 0, 0);
-}
-
-.contrainer-result div span:first-child {
-  display: inline-block;
-  width: 150px;
-  font-weight: normal;
-}
-
-.contrainer-result div span:last-child {
-  display: inline-block;
+.btn-submit{
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: var(--white-color);
 }
