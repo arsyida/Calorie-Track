@@ -116,7 +116,7 @@ function addInput(containerElement, inputType, data) {
 
   newInputDiv.innerHTML = `
     <div class="btn-remove">
-      <img src="./images/Remove.png" alt="Remove" class="remove-icon">
+      <img src="./assets/Remove.png" alt="Remove" class="remove-icon">
     </div>
     <select name="input-${inputType}" class="input-${inputType}" required>
       <option value="" disabled selected hidden>Please Choose...</option>
